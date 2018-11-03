@@ -18,3 +18,11 @@ def get_all_players():
     c = conn.cursor()
     results = c.execute('SELECT * FROM players_test').fetchall()
     return results
+
+
+def delete_player_from_db(id):
+    conn = sqlite3.connect('volleyball.db')
+    c = conn.cursor()
+    c.execute("DELETE FROM players_test WHERE (id = ?)", [id])
+    conn.commit()
+    return "Successfully deleted player"
