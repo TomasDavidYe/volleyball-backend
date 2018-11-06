@@ -13,7 +13,7 @@ def store_player_in_db(user):
     return
 
 
-def get_all_players():
+def get_all_players_from_db():
     conn = sqlite3.connect('volleyball.db')
     c = conn.cursor()
     results = c.execute('SELECT * FROM players_test').fetchall()
@@ -25,4 +25,4 @@ def delete_player_from_db(id):
     c = conn.cursor()
     c.execute("DELETE FROM players_test WHERE (id = ?)", [id])
     conn.commit()
-    return "Successfully deleted player"
+    return "Successfully deleted player with id {} from DB".format(id)
